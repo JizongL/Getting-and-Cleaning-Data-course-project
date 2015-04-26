@@ -214,7 +214,7 @@ mean(): Mean value - sd(): Standard deviation
 
 `Note`: Features are normalized and bounded within [-1,1]
 
-\#\#Dataset structure
+###Dataset structure
 ---------------------
 
     str(Data2)
@@ -289,7 +289,7 @@ mean(): Mean value - sd(): Standard deviation
     ##  $ frequencyBodyGyroscopeJerkMagnitude-mean()    : num  -0.319 -0.583 -0.608 -0.724 -0.548 ...
     ##  $ frequencyBodyGyroscopeJerkMagnitude-std()     : num  -0.382 -0.558 -0.549 -0.758 -0.456 ...
 
-\#\#Dataset summary
+###Dataset summary
 -------------------
 
     summary(Data2)
