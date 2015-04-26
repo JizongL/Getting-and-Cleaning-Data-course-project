@@ -32,7 +32,7 @@ You should create one R script called run_analysis.R that does the following.
 - 2: Those files contain the instructions and steps with R code embedded to produce this project.
 
 - 3: The final tidy data is in `tidydata.txt`. It can be loaded by the following command
--    `Data<-read.table("tidydata.txt", sep=" ", - head=TRUE)`
+-    `Data<-read.table("tidydata.txt", sep=" ", head=TRUE)`
 
 - 4: The codebok is in `codebook.md` . It gives the descriptions of the variables in the data frame 
 -    prouduced by this project.
