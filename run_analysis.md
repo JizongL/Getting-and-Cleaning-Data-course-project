@@ -1,27 +1,30 @@
-Step 1
+# Step by Step instruction for producing the entire project
+**Note** This file is supplementary on top of the requirement of this assignment,
+         in order to easily guide reader to learn how to reproduce the entire project. 
+## Step 1
 ------
 
-### To create a folder "data" in the local work directory and download the data from the
+#####To create a folder "data" in the local work directory and download the data from the
 
-### assigned URL, then store it into the"data" folder in the work directory.
+##### assigned URL, then store it into the"data" folder in the work directory.
 
     if(!file.exists("./data")){dir.create("./data")}
     fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
     download.file(fileUrl,destfile="./data/Dataset.zip",method="curl")
 
-Step 2
+## Step 2
 ------
 
-### Unzip the file folder previously downloaded into the "data" folder named "UCI HAR Dataset".
+##### Unzip the file folder previously downloaded into the "data" folder named "UCI HAR Dataset".
 
     unzip(zipfile="./data/Dataset.zip",exdir="./data")
     path_rf <- file.path("./data" , "UCI HAR Dataset")
     files<-list.files(path_rf, recursive=TRUE)
 
-Step 3
+## Step 3
 ------
 
-### Call all the necessary files and assign them a new name variables.
+##### Call all the necessary files and assign them a new name variables.
 
     ActivityTest  <- read.table(file.path(path_rf, "test" , "Y_test.txt" ),header = FALSE)
     ActivityTrain <- read.table(file.path(path_rf, "train", "Y_train.txt"),header = FALSE)
@@ -32,10 +35,10 @@ Step 3
     FeaturesTest  <- read.table(file.path(path_rf, "test" , "X_test.txt" ),header = FALSE)
     FeaturesTrain <- read.table(file.path(path_rf, "train", "X_train.txt"),header = FALSE)
 
-Step 4
+## Step 4
 ------
 
-### Verify the structure of the files.
+##### Verify the structure of the files.
 
     str(ActivityTest)
 
@@ -265,35 +268,35 @@ Step 4
     ##  $ V99 : num  -1 -1 -1 -1 -1 ...
     ##   [list output truncated]
 
-Step 5
+## Step 5
 ------
 
-### Merge the train and the test into one dataframe.
+##### Merge the train and the test into one dataframe.
 
     Subject <- rbind(SubjectTrain, SubjectTest)
     Activity<- rbind(ActivityTrain, ActivityTest)
     Features<- rbind(FeaturesTrain, FeaturesTest)
 
-Step 6
+## Step 6
 ------
 
-### Rename the columns of the 3 dataframes.
+##### Rename the columns of the 3 dataframes.
 
     names(Subject)<-c("subject")
     names(Activity)<- c("activity")
 
-Step 7
+## Step 7
 ------
 
-### read the features.txt file and assign the names to the columns of the "features" dataframe.
+##### read the features.txt file and assign the names to the columns of the "features" dataframe.
 
     FeaturesNames <- read.table(file.path(path_rf, "features.txt"),head=FALSE)
     names(Features)<- FeaturesNames$V2
 
-Step 8
+## Step 8
 ------
 
-### Merge the 3 sub-dataframes created above into one single dataframe "Data"
+##### Merge the 3 sub-dataframes created above into one single dataframe "Data"
 
     dataCombine <- cbind(Subject, Activity)
     Data <- cbind(Features, dataCombine)
@@ -401,12 +404,12 @@ Step 8
     ##  $ tBodyAccJerk-energy()-Z             : num  -1 -1 -1 -1 -1 ...
     ##   [list output truncated]
 
-Step 9
+## Step 9
 ------
 
-### filter the new "Data" dataframe to include only the mean and standard deviation of all
+##### filter the new "Data" dataframe to include only the mean and standard deviation of all
 
-### recorded parameters.
+##### recorded parameters.
 
     subdataFeaturesNames<-FeaturesNames$V2[grep("mean\\(\\)|std\\(\\)", FeaturesNames$V2)]
     selectedNames<-c(as.character(subdataFeaturesNames), "subject", "activity" )
@@ -483,12 +486,12 @@ Step 9
     ##  $ subject                    : int  1 1 1 1 1 1 1 1 1 1 ...
     ##  $ activity                   : int  5 5 5 5 5 5 5 5 5 5 ...
 
-Step 10
+## Step 10
 -------
 
-### load the activity\_labels.txt file which include all the labels of the activity categories.
+##### load the activity\_labels.txt file which include all the labels of the activity categories.
 
-### and assign those labels to the "activity" column of "Data" by using factor function.
+##### and assign those labels to the "activity" column of "Data" by using factor function.
 
     activityLabels <- read.table(file.path(path_rf, "activity_labels.txt"),header = FALSE)
     activityLabels=as.character(activityLabels$V2)
@@ -502,10 +505,10 @@ Step 10
     ## [29] SITTING  SITTING 
     ## 6 Levels: WALKING WALKING_UPSTAIRS WALKING_DOWNSTAIRS ... LAYING
 
-Step 11
+## Step 11
 -------
 
-### double check all the labels are properly assigned to the right columns
+##### double check all the labels are properly assigned to the right columns
 
     names(Data)
 
@@ -544,12 +547,12 @@ Step 11
     ## [65] "fBodyBodyGyroJerkMag-mean()" "fBodyBodyGyroJerkMag-std()" 
     ## [67] "subject"                     "activity"
 
-Step 12
+## Step 12
 -------
 
-### For easier reading, modify the title of all the labels by using
+##### For easier reading, modify the title of all the labels by using
 
-### the gsub() function, e.g. to replace x with y.
+##### the gsub() function, e.g. to replace x with y.
 
     names(Data)<-gsub("^t", "time", names(Data))
     names(Data)<-gsub("^f", "frequency", names(Data))
@@ -558,10 +561,10 @@ Step 12
     names(Data)<-gsub("Mag", "Magnitude", names(Data))
     names(Data)<-gsub("BodyBody", "Body", names(Data))
 
-Step 13
+## Step 13
 -------
 
-### verify the names are properly modified.
+##### verify the names are properly modified.
 
     names(Data)
 
@@ -634,14 +637,14 @@ Step 13
     ## [67] "subject"                                       
     ## [68] "activity"
 
-Step 14
+## Step 14
 -------
 
-### From the data set in step 4, creates a second, independent tidy data
+##### From the data set in step 4, creates a second, independent tidy data
 
-### set with the average of each variable for each activity and each subject.
+##### set with the average of each variable for each activity and each subject.
 
-### This can be achieved by aggregate() from the plyr package.
+##### This can be achieved by aggregate() from the plyr package.
 
     library(plyr)
     Data2<-aggregate(. ~subject + activity, Data, mean)
@@ -964,9 +967,9 @@ Step 14
     ## 121                                -0.9946711
     ## 151                                -0.9326607
 
-Step 15
+## Step 15
 -------
 
-### output the final result to a file name "tidydata.txt"
+##### output the final result to a file name "tidydata.txt"
 
     write.table(Data2, file = "tidydata.txt",row.name=FALSE)
