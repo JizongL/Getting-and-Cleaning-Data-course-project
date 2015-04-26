@@ -1,6 +1,5 @@
 #Getting-and-Cleaning-Data-Project 
 ##Human Activity Recognition data merging
-**By Jizong Liang**
 =================================
 ###Instructions for project
 
