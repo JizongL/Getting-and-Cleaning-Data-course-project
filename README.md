@@ -27,19 +27,20 @@ You should create one R script called run_analysis.R that does the following.
  
 ###Steps to reproduce this project
 
-- 1: Plsease see the details in `run_analysis.md` and `codebook.md`.
+- 1: Plsease see the details in `run_analysis.md` and `codebook.md`.**note** both files are created by
+-    using R Markdown file format. 
 
-- 2: Those files contain the instructions and steps with R code embedded  to produce this project.
+- 2: Those files contain the instructions and steps with R code embedded to produce this project.
 
-- 3: The final tidy data is in `tidydata.txt`. It can be loaded by 
+- 3: The final tidy data is in `tidydata.txt`. It can be loaded by the following command
 -    `Data<-read.table("tidydata.txt", sep=" ", - head=TRUE)`
 
 - 4: The codebok is in `codebook.md` . It gives the descriptions of the variables in the data frame 
 -    prouduced by this project.
 
 ###How to produce this project
-- The R script `run_analysis.R` can be used to build the Project and it produces the final tidy dataset in 
-- `tidydata.txt`.
+- Run the R script `run_analysis.R` to build the Project.
+- The result production is the file `tidydata.txt` which is created in the work directory.
 
 
 

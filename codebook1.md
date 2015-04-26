@@ -1,4 +1,4 @@
-======== Codebook was generated on 2015-04-26 10:00:16 during the same
+==Codebook was generated on 2015-04-26 10:00:16 during the same
 process that generated the dataset.
 
 Variable and descriptions
@@ -139,7 +139,7 @@ movement.
 -   frequencyBodyGyroscopeMagnitude
 -   frequencyBodyGyroscopeJerkMagnitude
 
-The set of variables that were estimated from these signals are: -
+**Note** The set of variables that were estimated from these signals are: -
 mean(): Mean value - sd(): Standard deviation
 
 **There are 66 combined Variable names used in the dataset:**
